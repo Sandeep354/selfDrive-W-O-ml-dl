@@ -8,7 +8,7 @@ def straight():
     PressKey(W)
     ReleaseKey(A)
     ReleaseKey(D)
-    time.sleep(0.4)
+    time.sleep(0.25)
     ReleaseKey(W)
     
 def left(t):
@@ -44,11 +44,11 @@ def reverse(t):
 def timeWRTangle(angle):
     #More angle --> less speed --> less time.sleep
     if angle == 'nan':
-        t = 0.1
+        t = 0.05
     else:   
-        t = 1 - abs(angle)/90
-        t = t*0.08
-        t = float("{:.2f}".format(t)) #need only 2 decimal
+        t = 1 - angle/180
+        t = t*0.05
+        t = float("{:.4f}".format(t)) #need only 2 decimal
         print ('time taken :', t)
         
     return t
@@ -72,11 +72,11 @@ def move2(m1, m2):
     if angle > 0:
         right(timeWRTangle(abs_angle))
         #straight()
-        print ('RIGHT')
+        print ('turn RIGHT by angle :', angle)
     elif angle < 0:
         left(timeWRTangle(abs_angle))
         #straight()
-        print ('LEFT')
+        print ('turn LEFT by angle', angle)
     else:
         straight()
         print ('STRAIGHT')

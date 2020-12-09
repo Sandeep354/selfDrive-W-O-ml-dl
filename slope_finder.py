@@ -21,11 +21,12 @@ def finalSlope(PORx, PORy, lines):
     midx_list = []
     midy_list = []
     finalMidX, finalMidY = 0, 0
-    #slopes = []
+    lineLengthList = []
 
     for line in lines:
         coords = line[0]
         x1, y1, x2, y2 = coords[0], coords[1], coords[2], coords[3]
+        lineLengthList.append(sqrt( (x1 - x2)**2 + (y1 - y2)**2 ))
         #cv2.line(img, (x1, y1), (x2, y2), [255,255,255], 1)
         midx = int((x1+x2)/2)
         midy = int((y1+y2)/2)
@@ -42,7 +43,10 @@ def finalSlope(PORx, PORy, lines):
 
 
     final_slope = slope(x1 = PORx, y1 = PORy, x2 = finalMidX, y2 = finalMidY)
-
+    print ('lengths of lines detected are :', lineLengthList)
+    print ('distance of points are :', distList)
+    print ("midx is {} and midy is {}".format(midx_list, midy_list))
+    
 ##    print ("porx is {}, pory is {}, midx is {} and midy is {}".format(PORx, PORy, finalMidX, finalMidY))
 ##
 ##    print ('max X is {} and max Y is {}'.format(max(midx_list), max(midy_list)))

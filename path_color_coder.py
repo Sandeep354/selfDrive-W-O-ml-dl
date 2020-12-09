@@ -28,7 +28,7 @@ def lane_finder(image, PORx, PORy):
 
     
     # Hough Lines
-    lines = cv2.HoughLinesP(lane, 1, np.pi/180, 5, 1)
+    lines = cv2.HoughLinesP(lane, 1, np.pi/180, threshold = 8, minLineLength = 3, maxLineGap = 0.5)
     
     final_slope, newPORx, newPORy = finalSlope(PORx, PORy, lines)
     

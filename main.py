@@ -13,13 +13,13 @@ from getkeys import key_check
 import math
 
 #region_of_interest = (0,510,170,640) #only the mini-map
-roi_lanes = (70, 590, 100, 600) #focus on lanes which we need
+roi_lanes = (50, 585, 120, 600) #focus on lanes which we need
 
 
 def main():
 
     m1 = math.inf #initial slope
-    PORx, PORy = 13, 0 # Initial Point Of Reference
+    PORx, PORy = 30, 0 # Initial Point Of Reference
     
     for i in list(range(5))[::-1]:
         print(i+1)
@@ -47,17 +47,22 @@ def main():
                 print ('line not found')
                 ReleaseKey(W)
                 PressKey(S)
-                time.sleep(0.25)
+                time.sleep(0.5)
                 ReleaseKey(S)
+                PressKey(W)
+                time.sleep(0.1)
+                ReleaseKey(W)
 
             '''
-            final_slope = lane_finder(screen)
+            final_slope, newPORx, newPORy = lane_finder(screen, PORx, PORy)
             move2(m1, final_slope)
             m1 = final_slope
+            PORx, PORy = newPORx, newPORy
             '''
 
             print('Frame took {} seconds'.format(time.time()-last_time))
             last_time = time.time()
+            
 
         keys = key_check()
 
